@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rising Uttarakhand - Coming Soon</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Background Glow -->
+    <div class="bg-blur"></div>
+
+    <!-- Content -->
+    <div class="content">
+      <h1 class="title animate-title">Rising Uttarakhand</h1>
+      <p class="subtitle animate-subtitle">Something amazing is coming soon 🚀</p>
+
+      <div class="loader animate-loader"></div>
+
+      <!-- Countdown -->
+      <div class="countdown">
+        <div><span id="days">00</span><p>Days</p></div>
+        <div><span id="hours">00</span><p>Hours</p></div>
+        <div><span id="minutes">00</span><p>Minutes</p></div>
+        <div><span id="seconds">00</span><p>Seconds</p></div>
+      </div>
+
+      <!-- Email -->
+      <div class="notify animate-input">
+        <input type="email" placeholder="Enter your email" />
+        <button>Notify Me</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Countdown Script -->
+  <script>
+    const launchDate = new Date("2026-06-01T00:00:00").getTime();
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      document.getElementById("days").innerText =
+        Math.floor(distance / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").innerText =
+        Math.floor((distance / (1000 * 60 * 60)) % 24);
+      document.getElementById("minutes").innerText =
+        Math.floor((distance / (1000 * 60)) % 60);
+      document.getElementById("seconds").innerText =
+        Math.floor((distance / 1000) % 60);
+    }, 1000);
+  </script>
+
+  <!-- GSAP Animations -->
+  <script>
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    tl.from(".animate-title", {
+      y: 80,
+      opacity: 0,
+      duration: 1
+    })
+    .from(".animate-subtitle", {
+      y: 40,
+      opacity: 0,
+      duration: 0.8
+    }, "-=0.5")
+    .from(".animate-loader", {
+      scaleX: 0,
+      transformOrigin: "left",
+      duration: 0.8
+    }, "-=0.5")
+    .from(".countdown div", {
+      y: 50,
+      opacity: 0,
+      stagger: 0.15,
+      duration: 0.6
+    }, "-=0.4")
+    .from(".animate-input", {
+      y: 40,
+      opacity: 0,
+      duration: 0.6
+    }, "-=0.4");
+
+    // Floating animation
+    gsap.to(".container", {
+      y: 10,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    // Glow pulse
+    gsap.to(".bg-blur", {
+      scale: 1.1,
+      duration: 4,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+  </script>
+
+</body>
+</html>

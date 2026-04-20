@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: #050505;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.bg-blur {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #00c6ff, #0072ff);
+  filter: blur(200px);
+  z-index: -1;
+}
+
+/* TITLE */
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  position: relative;
+
+  background: linear-gradient(
+    120deg,
+    #00c6ff,
+    #0072ff,
+    #ffffff,
+    #00c6ff
+  );
+  background-size: 300% auto;
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  animation: gradientMove 6s linear infinite;
+}
+
+/* Shine */
+.title::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  animation: shine 3s infinite;
+}
+
+.subtitle {
+  margin-top: 10px;
+  color: #aaa;
+}
+
+/* Loader */
+.loader {
+  width: 200px;
+  height: 4px;
+  margin: 25px auto;
+  background: linear-gradient(90deg, transparent, #00c6ff, transparent);
+}
+
+/* Countdown */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.countdown div {
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  transition: 0.3s;
+}
+
+.countdown div:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 0 20px rgba(0,198,255,0.2);
+}
+
+/* Notify */
+.notify {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.notify input {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+.notify button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.notify button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #00c6ff;
+}
+
+/* Animations */
+@keyframes gradientMove {
+  0% { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  60% { left: 120%; }
+  100% { left: 120%; }
+}
